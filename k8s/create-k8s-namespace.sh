@@ -2,7 +2,7 @@
 
 #########################################
 # script to create a kubernetes namespace
-# in the current namespace.
+# in the current context.
 ##########################################
 
 ################### usage ############################
