@@ -10,7 +10,7 @@ get_folder_size_gb() {
 }
 
 check_folder_sizes_to_csv() {
-    echo "Folder,Size (GB),Original Path"
+    echo "Folder,Size (GB),Size,Original Path"
     for folder in "${folders[@]}"; do
         folder_path="/fileservices/persistent/${folder}/persistent"
         if [ -d "$folder_path" ]; then
