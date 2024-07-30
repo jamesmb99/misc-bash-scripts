@@ -25,13 +25,14 @@ fi
 # redirects standard output (stdout) and standard error (stderr) to the log file
 exec > ${log_dir}/${log_file} 2>&1
 
+# log running containers
+/usr/bin/docker ps
+echo " "
+
 /usr/bin/docker info | grep -i data
 
 echo " "
 echo "thinpool maintenance started at `date`"
-
-# log running containers
-/usr/bin/docker ps
 
 # Obtain list of all stopped containers
 /usr/bin/docker ps --all | grep 'xited' | cut -f1 -d ' ' > ${thinpool_dir}/${txt_file}
@@ -75,6 +76,7 @@ fi
 
 #log running conrtainer for cross checking
 /usr/bin/docker ps
+echo " "
 
 /usr/bin/docker info | grep -i data
 mv ${log_dir}/${log_file} ${log_dir}/${cur_date}_${log_file}
