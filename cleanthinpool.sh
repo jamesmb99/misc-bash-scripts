@@ -30,6 +30,9 @@ exec > ${log_dir}/${log_file} 2>&1
 echo " "
 echo "thinpool maintenance started at `date`"
 
+# log running containers
+/usr/bin/docker ps
+
 # Obtain list of all stopped containers
 /usr/bin/docker ps --all | grep 'xited' | cut -f1 -d ' ' > ${thinpool_dir}/${txt_file}
 if [ $? -eq 0 ]; then
@@ -69,6 +72,9 @@ else
     echo "step 4 error: stopping containers failed"
     exit
 fi
+
+#log running conrtainer for cross checking
+/usr/bin/docker ps
 
 /usr/bin/docker info | grep -i data
 mv ${log_dir}/${log_file} ${log_dir}/${cur_date}_${log_file}
