@@ -79,5 +79,7 @@ fi
 echo " "
 
 /usr/bin/docker info | grep -i data
-mv ${log_dir}/${log_file} ${log_dir}/${cur_date}_${log_file}
+
 echo "thinpool maintenance ended at `date`"
+
+mv ${log_dir}/${log_file} ${log_dir}/${cur_date}_${log_file}
