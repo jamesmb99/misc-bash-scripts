@@ -1,0 +1,47 @@
+# See https://pre-commit.com for more information
+# See https://pre-commit.com/hooks.html for more hooks
+repos:
+    -   repo: https://github.com/terraform-docs/terraform-docs
+        rev: v0.20.0
+        hooks:
+        -   id: terraform-docs-go
+            args: ["md", "tbl", "--output-file", "README.md", "."]
+    -   repo: https://github.com/pre-commit/pre-commit-hooks
+        rev: v5.0.0
+        hooks:
+        -   id: mixed-line-ending
+            args: ['--fix=lf']
+        -   id: trailing-whitespace
+        -   id: end-of-file-fixer
+        -   id: check-yaml
+        -   id: check-added-large-files
+    -   repo: https://github.com/antonbabenko/pre-commit-terraform
+        rev: v1.97.4
+        hooks:
+        -   id: terraform_fmt
+        -   id: terraform_validate
+        -   id: tfupdate
+            name: Autoupdate Terraform versions
+        -   id: tfupdate
+            name: Auto-update databricks provider
+            args:
+              - --args=provider databricks/databricks
+        -   id: tfupdate
+            name: Auto-update azuread provider
+            args:
+              - --args=provider hashicorp/azuread
+        -   id: tfupdate
+            name: Auto-update azurerm provider
+            args:
+              - --args=provider hashicorp/azurerm
+        -   id: tfupdate
+            name: Auto-update github provider
+            args:
+              - --args=provider integrations/github
+    -  repo: local
+       hooks:
+       -   id: update-terraform-module-versions
+           name: "Update Terraform module versions"
+           entry: ./update_terraform_module.sh
+           language: system
+           types: [text]
