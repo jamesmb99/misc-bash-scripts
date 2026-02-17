@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -e
 
-MODULE_URL="git@github.com:JH-HIT-DataPlatform/terraform-databricks-package.git"
+MODULE_URL="git@github.com:repo.git"
 LATEST_TAG=$(git ls-remote --tags ${MODULE_URL} | awk -F'/' '{print $NF}' | sort -V | tail -n1)
 
 # check $LATEST_TAG is not empty
